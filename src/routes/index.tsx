@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
-import TabRoutes from './tab.routes';
+import StackRoutes from './stack.routes';
 
 const Routes = () => {
   return (
@@ -10,7 +10,7 @@ const Routes = () => {
         barStyle="light-content"
         backgroundColor="#171821"
       />
-      <TabRoutes />
+      <StackRoutes />
     </NavigationContainer>
   )
 }
