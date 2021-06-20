@@ -67,10 +67,6 @@ export default function MovieDetails() {
 		setIsLoading(false);
 	}
 
-	function teste() {
-		return console.log('teste');
-	}
-
 	return (
 		<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 			<View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
