@@ -11,3 +11,13 @@ export default function formatDate(date: string) {
 
   return format(dateFormat, 'MMM dd, yyyy', { locale: ptBR });
 }
+
+export function getTheYear(date: string) {
+  const splitedDate = date.split('-');
+
+  const [ano, mes, dia] = splitedDate.map(data => Number(data))
+
+  const dateFormat = new Date(ano, mes - 1, dia);
+
+  return format(dateFormat, 'yyyy', { locale: ptBR })
+}
