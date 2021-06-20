@@ -1,7 +1,10 @@
  <h1>Nattive Movies 🎞 </h1>
 
-<img src="./.github/home.png" alt="Imagem da home do app" style="margin-right: 60px">
-<img src="./.github/favorites.png" alt="Imagem da pagina de favoritos do app">
+<div style="display: flex; gap: 2rem; height: 480px; margin-bottom: 40px">
+  
+<img src="./.github/home.png" alt="Imagem da home do app"  />
+<img src="./.github/favorites.png" alt="Imagem da pagina de favoritos do app"/>
+</div>
 
 ## 🚀 Tecnologias
 
