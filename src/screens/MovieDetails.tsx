@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { RectButton } from 'react-native-gesture-handler';
-import { Entypo } from '@expo/vector-icons';
 import { getTheYear } from '../utils/formatDate';
 import axios from 'axios';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -43,15 +42,18 @@ export default function MovieDetails() {
 
 	useEffect(() => {
 		async function findInWatchlist() {
+			setIsLoading(true);
+
 			const { data } = await axios.get<RequestProps>(watchListMovies.url);
 			const movie = data.results.find((movie) => movie.id === id);
 			if (movie) {
 				setIsInWatchlist(true);
 			}
+			setIsLoading(false);
 		}
 
 		findInWatchlist();
-	}, [isInWatchlist]);
+	}, []);
 
 	async function ToggleWatchlist() {
 		setIsLoading(true);
@@ -65,12 +67,12 @@ export default function MovieDetails() {
 		setIsLoading(false);
 	}
 
+	function teste() {
+		return console.log('teste');
+	}
+
 	return (
-		<ScrollView
-			style={styles.container}
-			showsVerticalScrollIndicator={false}
-			scrollEventThrottle={1}
-		>
+		<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 			<View style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}>
 				<Image
 					source={{ uri: `${imageBaseURL}/${backgroundImg}` }}
@@ -151,7 +153,7 @@ export default function MovieDetails() {
 								size={22}
 								count={5}
 								selectedColor="#FBC632"
-								defaultRating={average / 2}
+								defaultRating={Math.floor(average / 2)}
 							/>
 						</View>
 					</View>
