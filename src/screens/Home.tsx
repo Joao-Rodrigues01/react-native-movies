@@ -8,6 +8,7 @@ import {
 	FlatList,
 	ScrollView,
 	StatusBar,
+	RefreshControl,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -29,6 +30,7 @@ export default function Home() {
 	const [tvShows, setTvShows] = useState<TVShowDTO[]>([]);
 	const [watchList, setWatchList] = useState<MoviesDTO[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [refreshing, setRefreshing] = useState(false);
 
 	useEffect(() => {
 		async function loadMovies() {
@@ -53,11 +55,24 @@ export default function Home() {
 		loadWatchList();
 	}, []);
 
+	async function onRefresh() {
+		setIsLoading(true);
+		setRefreshing(true);
+		const { data } = await axios.get(watchListMovies.url);
+		setWatchList(data.results);
+		setRefreshing(false);
+		setIsLoading(false);
+	}
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<StatusBar translucent backgroundColor="transparent" />
 
-			<ScrollView>
+			<ScrollView
+				refreshControl={
+					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+				}
+			>
 				{isLoading ? (
 					<View
 						style={{
